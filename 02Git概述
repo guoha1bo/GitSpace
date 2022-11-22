@@ -1,0 +1,238 @@
+# Git概述
+  ## Git特点：
+  - 免费 开源 
+  - 分布式版本控制 
+  - 易学 性能快 
+  - 方便的暂存区域 多个工作流分支 
+## 1.1 何为版本控制
+版本控制用来记录文件内容变化，便于将来查阅特定版本修改情况的系统。
+
+## 1.2 为什么需要版本控制
+从个人开发过渡到团队协作  
+多副本不利于团队协作开发，容易被覆盖
+
+
+## 1.3 版本控制工具
+### 1.3.1 集中化版本控制
+- 单一集中管理服务器
+- 缺点是中央服务器的单点故障 服务器宕机时 所有人无法工作
+- 例如SVN
+
+### 1.3.2 分布式版本控制
+- 每个人在自己本地做代码库
+- 统一的代码托管中心（远程库）轻易不会挂
+- 其他人想要代码开发需要拉取最新代码 
+- 服务器断网的情况也可以进行开发
+- 每个客户端都是完整的项目包含历史记录 发生故障也可以用其他客户端的本地仓库进行恢复
+
+## 1.4 Git发展历史
+![Git发展历史](./upload/Git发展历史.png)
+
+
+## 1.5 Git工作机制
+![Git工作机制](./upload/工作机制.png)
+
+- 工作区：代码存放在磁盘的位置
+- 暂存区：写了代码，将代码从工作区添加到暂存区（临时存储）代码可以删除
+- 本地库：将代码提交到本地库，生成历史版本，代码就删不掉了 
+
+
+## 1.6 Git和代码托管中心
+- 局域网
+  - GitLab
+- 互联网
+  - GitHub
+  - Gitee
+## 2.1 Git安装
+[Git官方]("https://git-scm.com/")  
+
+![安装选项](/upload/Git安装.png)
+
+```
+git --version
+```
+
+## 3.1 Git常用命令
+![Git常用命令](/upload/Git常用命令.png)
+
+
+```shell
+查看本地用户信息
+guohaibo@DESKTOP-OUANH0A MINGW64 ~
+$ cat ~/.gitconfig
+[user]
+        name = guohaibo
+        email = 18403560369@164.com
+[http]
+        sslVerify = false
+```
+```
+初始化本地库
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo
+$ git init
+Initialized empty Git repository in C:/Users/guohaibo/Desktop/GitSpace/Gitdemo/.git/
+
+查看本地库状态
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files: 未被追踪的文件  只是存在于工作区
+  (use "git add <file>..." to include in what will be committed)
+        hello.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+```
+```
+git add 添加到暂存区
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git add hello.txt
+warning: LF will be replaced by CRLF in hello.txt.
+The file will have its original line endings in your working directory
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   hello.txt
+
+删除暂存区的文件
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git rm --cached hello.txt
+rm 'hello.txt'
+
+文件依旧在工作区
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ ll
+total 4
+-rw-r--r-- 1 guohaibo 197609 990 Nov 22 17:20 hello.txt
+```
+```
+git commit 提交本地库
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git commit -m "first commit" hello.txt
+warning: LF will be replaced by CRLF in hello.txt.
+The file will have its original line endings in your working directory
+[master (root-commit) 359d15e] first commit
+ 1 file changed, 33 insertions(+)
+ create mode 100644 hello.txt
+
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git reflog
+359d15e (HEAD -> master) HEAD@{0}: commit (initial): first commit
+版本号  指针指向master分支                           第一次提交版本的日志信息
+前七位
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git log
+commit 359d15e25f894c0a08bbd8975842efaec772759a (HEAD -> master)
+Author: guohaibo <18403560369@164.com>
+Date:   Tue Nov 22 17:37:34 2022 +0800
+
+    first commit
+```
+```
+修改文件
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ vim hello.txt
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   hello.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git add hello.txt
+warning: LF will be replaced by CRLF in hello.txt.
+The file will have its original line endings in your working directory
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   hello.txt
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git commit -m "second commit"
+[master 7d57909] second commit
+ 1 file changed, 5 deletions(-)
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git reflog
+7d57909 (HEAD -> master) HEAD@{0}: commit: second commit
+359d15e HEAD@{1}: commit (initial): first commit
+```
+
+```
+版本穿梭
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git reflog
+7d57909 (HEAD -> master) HEAD@{0}: commit: second commit
+359d15e HEAD@{1}: commit (initial): first commit
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git reset --hard 359d15e
+HEAD is now at 359d15e first commit
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git reflog
+359d15e (HEAD -> master) HEAD@{0}: reset: moving to 359d15e
+7d57909 HEAD@{1}: commit: second commit
+359d15e (HEAD -> master) HEAD@{2}: commit (initial): first commit
+
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git reset --hard 7d57909
+HEAD is now at 7d57909 second commit
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
+$ git reflog
+7d57909 (HEAD -> master) HEAD@{0}: reset: moving to 7d57909
+359d15e HEAD@{1}: reset: moving to 359d15e
+7d57909 (HEAD -> master) HEAD@{2}: commit: second commit
+359d15e HEAD@{3}: commit (initial): first commit
+
+```
+
+## 4.1 什么是分支
+在版本控制中，同时推进多个任务时，为每个任务，创建每个任务的单独分支，使用分支意味着程序员可以吧自己从开发主线上分离开来，开发自己的分支时不影响主线分支的运行。分支底层也是指针的引用。
+
+在公司中，会有多种环境，比如生产环境供用户使用，程序员使用开发dev分支，测试人员使用测试分支，
+![Git分支环境](/upload/Git分支环境.png)
