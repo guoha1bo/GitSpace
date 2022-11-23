@@ -236,3 +236,21 @@ $ git reflog
 
 在公司中，会有多种环境，比如生产环境供用户使用，程序员使用开发dev分支，测试人员使用测试分支，
 ![Git分支环境](/upload/Git分支环境.png)
+
+## 4.2 分支的好处
+
+## 4.3 分支的操作
+
+### 4.3.1 查看分支
+```
+PS C:\Users\guohaibo\Desktop\GitSpace> git branch -v
+* master 2607d74 first commit gitspace
+```
+### 4.3.2 创建分支
+```
+PS C:\Users\guohaibo\Desktop\GitSpace> git branch hot-fix
+PS C:\Users\guohaibo\Desktop\GitSpace> git branch -v
+  hot-fix 2607d74 first commit gitspace
+* master  2607d74 first commit gitspace
+```
+### 4.3.3 切换分支
