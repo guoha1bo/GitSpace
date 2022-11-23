@@ -241,12 +241,14 @@ $ git reflog
 
 ## 4.3 分支的操作
 
-### 4.3.1 查看分支
+### 4.3.1 查看分支'
+git branch -v
 ```
 PS C:\Users\guohaibo\Desktop\GitSpace> git branch -v
 * master 2607d74 first commit gitspace
 ```
 ### 4.3.2 创建分支
+git branch 分支名
 ```
 PS C:\Users\guohaibo\Desktop\GitSpace> git branch hot-fix
 PS C:\Users\guohaibo\Desktop\GitSpace> git branch -v
@@ -254,3 +256,4 @@ PS C:\Users\guohaibo\Desktop\GitSpace> git branch -v
 * master  2607d74 first commit gitspace
 ```
 ### 4.3.3 切换分支
+
