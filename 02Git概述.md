@@ -54,7 +54,16 @@ git --version
 
 ## 3.1 Git常用命令
 ![Git常用命令](/upload/Git常用命令.png)
+```
+cat ~/.gitconfig     查看本地用户信息
+git init       初始化本地库
+git status     查看本地库状态
+git add  文件名  添加到暂存区
+git commit -m "日志信息"  文件名  提交到本地库
+git reflog     查看历史记录
+git reset --hard 版本号    版本穿梭
 
+```
 
 ```shell
 查看本地用户信息
@@ -67,7 +76,7 @@ $ cat ~/.gitconfig
         sslVerify = false
 ```
 ```
-初始化本地库
+初始化本地库 git init 
 guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo
 $ git init
 Initialized empty Git repository in C:/Users/guohaibo/Desktop/GitSpace/Gitdemo/.git/
