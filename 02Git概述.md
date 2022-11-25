@@ -302,8 +302,8 @@ git merge 要合并的分支名  将要合并的分支修改新增的内容合�
 ![](upload/Git跨团队协作.png)
 
 
-## GitHub使用
-### 远程仓库操作
+## 5.GitHub使用
+### 5.1远程仓库操作
 ```
 git remote -v  查看当前所有远程库地址别名
 git remote add 别名 远程地址  起别名
@@ -320,4 +320,69 @@ GitSpace        https://github.com/guoha1bo/GitSpace.git (push)
 两个不同的意思：既可以拉取fetch，也可以推送push
 
 推送时 最小单位为分支
+
+```
+### SSH免密登录
+```
+删除c盘user目录下 ssh文件
+
+运行命令生成 .ssh秘钥目录 
+ssh-keygen -t rsa -C 18403560369@163.com  github绑定邮箱
+连续敲三次回车
+
+进入ssh秘钥目录 ~/.ssh
+cd ~/.ssh
+cat id_rsa.pub
+赋值内容 粘贴到 GitHub 账号设置里 ssh中的key
+点击add 添加成功
+```
+
+## IDEA继承Git
+### 配置忽略文件
+为什么要忽略？  
+与实际项目无关，不参与服务器部署运行，屏蔽掉IDE工具之间的差异  
+```
+创建git.ignore
+在 home目录 找到 .gitconfig文件
+添加内容  
+[core]
+    excludesfile = C:/Users/guohaibo/git.ignore
+    不使用反斜杠
+配置完成
+
+```
+### 定位Git程序
+![](upload/IDEA配置Git.png)
+
+### 在IDEA中创建本地仓库
+![](upload/idea创建本地库1.png)
+
+### IDEA配置好Git和仓库后自动检测未添加到暂存区的文件
+![](upload/idea中检测到Git未被添加到暂存区的文件.png)
+
+### IDEA中使用Git操作
+```
+右键文件或者目录 选择Git git add 添加到暂存区
+                选择commit 提交到本地库
+
+合并分支 正常合并
+当hot-fix分支下有新添加的内容时，并且提交以后，切换回master分支，这时看不见hot-fix新增内容，合并分支，idea中右下角点击分支，合并到当前分支，新增内容就添加到了master分支下  
+
+合并分支 冲突合并
+当hot-fix分支下 与master分支下同样的文件 同样的位置上，有不同的代码或者内容，合并时无法自动合并，需要我们手动选择保留哪边的代码  
+
+遇到的问题
+为什么我在master分支下的代码 在hotfix分支下 修改之后提交 然后切换回master分支 文件直接就不见了啊 然后我又重新创建了一样的文件 才能合并分支  
+
+
+我在master分支下的 代码还未提交 只是add到了暂存区  这时候切换到hotfix分支下  修改提交之后 再切换到master分支下 master分支还在他自己分支的上一个版本 这时候就没有那个在hotfix分支下的代码了  此时需要合并分支。 如果在master分支下再修改相同位置的内容  下一次合并时  才会出现合并冲突 这时需要手动判断保留哪边的代码
+这种情况属于第一次创建了文件，提交了之后 跟另一个分支是没有任何关系的 他们各自是独立开发  
+
+
+```
+
+
+
+
+
 
