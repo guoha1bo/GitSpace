@@ -397,6 +397,16 @@ git clone
 ```
 
 
+遇到的问题：
+```
+OpenSSL SSL_read: Connection was reset, errno 10054
+输入git config --global http.sslVerify "false"
+
+Failed to connect to github.com port 443 after 21118 ms: Timed out 
+网络问题
+
+
+
 
 
 
