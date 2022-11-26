@@ -205,7 +205,7 @@ $ git reflog
 ```
 
 ```
-版本穿梭
+版本穿梭  git reset --hard 版本号
 guohaibo@DESKTOP-OUANH0A MINGW64 ~/Desktop/GitSpace/Gitdemo (master)
 $ git reflog
 7d57909 (HEAD -> master) HEAD@{0}: commit: second commit
@@ -369,7 +369,7 @@ cat id_rsa.pub
 当hot-fix分支下有新添加的内容时，并且提交以后，切换回master分支，这时看不见hot-fix新增内容，合并分支，idea中右下角点击分支，合并到当前分支，新增内容就添加到了master分支下  
 
 合并分支 冲突合并
-当hot-fix分支下 与master分支下同样的文件 同样的位置上，有不同的代码或者内容，合并时无法自动合并，需要我们手动选择保留哪边的代码  
+当hot-fix分支下 与master分支下同样的文件 同样的位置上，有不同的代码或者内容，合并时无法自动合并，需要我们手动选择保留哪边的代码  点击箭头将代码填充到中间，点击X号显示忽略代码
 
 遇到的问题
 为什么我在master分支下的代码 在hotfix分支下 修改之后提交 然后切换回master分支 文件直接就不见了啊 然后我又重新创建了一样的文件 才能合并分支  
@@ -378,6 +378,21 @@ cat id_rsa.pub
 我在master分支下的 代码还未提交 只是add到了暂存区  这时候切换到hotfix分支下  修改提交之后 再切换到master分支下 master分支还在他自己分支的上一个版本 这时候就没有那个在hotfix分支下的代码了  此时需要合并分支。 如果在master分支下再修改相同位置的内容  下一次合并时  才会出现合并冲突 这时需要手动判断保留哪边的代码
 这种情况属于第一次创建了文件，提交了之后 跟另一个分支是没有任何关系的 他们各自是独立开发  
 
+idea中设置GitHub账号  
+打开idea的设置，点击GitHub，去GitHub生成token口令
+ settings > Developer> settings >personalaccesstonkens 
+设置免密登录
+
+
+分享项目到GitHub  vcs  >  在GitHub上分享项目  
+
+推送代码到远程库  push  
+如果本地库代码跟远程库的代码版本不一样，push的操作是会被拒绝的，要想push成功，一定要保证本地库的版本要比远程库的版本高，如果落后，需要pull拉取一下远程库的代码，将本地代码更新到最新以后再push
+
+拉取远程库代码 pull 
+如果本地库代码跟远程库代码不一致，会自动合并，合并失败时，也需要手动合并。
+
+git clone
 
 ```
 
